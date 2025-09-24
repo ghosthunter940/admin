@@ -1,0 +1,84 @@
+/* Base reset */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background: #f8fafc; /* very light gray background */
+    color: #0f172a; /* slate-900 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container and card */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 6px 20px rgba(2,6,23,0.06);
+    padding: 1rem;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+
+/* Buttons */
+.btn {
+    display: inline-flex; align-items: center; gap: 0.5rem; border: 0; cursor: pointer;
+    padding: 0.5rem 0.9rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;
+    transition: transform .08s ease, box-shadow .12s ease, background-color .12s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.btn-primary { background: linear-gradient(180deg,#4f46e5,#4338ca); color: #fff; box-shadow: 0 6px 18px rgba(67,56,202,0.12); }
+.btn-ghost { background: transparent; color: #0f172a; border: 1px solid rgba(15,23,42,0.06); }
+.btn-success { background: linear-gradient(180deg,#10b981,#059669); color: #fff; }
+.btn-danger { background: linear-gradient(180deg,#ef4444,#dc2626); color: #fff; }
+
+/* Form elements */
+input[type="text"], input[type="number"], input[type="date"], textarea, select {
+    width: 100%; padding: 0.6rem 0.8rem; border: 1px solid #e6eef7; border-radius: 8px; background: #fff;
+    color: #0f172a; font-size: 0.95rem; outline: none; transition: box-shadow .12s ease, border-color .12s ease;
+}
+input:focus, textarea:focus, select:focus { box-shadow: 0 6px 18px rgba(59,130,246,0.08); border-color: #60a5fa; }
+
+label { display:block; font-size:0.9rem; color:#334155; margin-bottom:0.35rem; }
+
+/* File input styling fallback */
+input[type="file"] { display:block; }
+
+/* Table styles */
+.table { width:100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; }
+.table thead { background: linear-gradient(180deg,#f8fafc,#f1f5f9); }
+.table th, .table td { text-align: left; padding: 0.9rem 0.8rem; border-bottom: 1px solid #eef2f7; font-size: 0.95rem; }
+.table tbody tr:hover { background: #fbfdff; }
+
+/* Responsive table wrapper */
+.table-responsive { width:100%; overflow-x:auto; border-radius: 10px; }
+.table .avatar { width:40px; height:40px; border-radius:9999px; object-fit:cover; margin-right:0.6rem; }
+
+/* Small helpers for badges */
+.badge { display:inline-block; padding:0.25rem 0.5rem; border-radius:999px; font-size:0.75rem; font-weight:700; }
+.badge-green { background:#ecfdf5; color:#065f46; }
+.badge-red { background:#ffedea; color:#7f1d1d; }
+
+/* Icon helpers */
+.icon { width:18px; height:18px; display:inline-block; vertical-align:middle; }
+.icon-sm { width:16px; height:16px; }
+
+/* Modal tweaks */
+.modal { position: fixed; inset:0; display:flex; align-items:flex-start; justify-content:center; padding:2rem; background: rgba(2,6,23,0.5); }
+.modal .card { width:100%; max-width:720px; margin-top:2rem; }
+
+/* Responsive layout tweaks */
+@media (max-width: 768px) {
+    .card { padding: 0.8rem; }
+    .table th, .table td { padding: 0.6rem 0.5rem; font-size:0.9rem; }
+    .container { padding: 0.6rem; }
+}
+
+/* Specific table padding placeholders used in JS */
+#items-table-body td, #transactions-table-body td { padding-top: 1rem; padding-bottom: 1rem; }
+
+/* Small utility */
+.text-muted { color: #6b7280; font-size:0.9rem; }
+
