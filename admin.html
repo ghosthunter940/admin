@@ -7,79 +7,113 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style> body { font-family: 'Inter', sans-serif; } #sidebar { transition: transform 0.3s ease-in-out; } </style>
+    <style> 
+        body { font-family: 'Inter', sans-serif; } 
+        #sidebar { transition: transform 0.3s ease-in-out; }
+        .sidebar-stat-item:hover { background-color: #374151; /* gray-700 */ }
+    </style>
 </head>
 <body class="bg-gray-100">
 
     <div id="app-content" class="hidden">
         <!-- Sidebar -->
-        <aside id="sidebar" class="bg-gray-800 text-white w-64 fixed inset-y-0 left-0 transform -translate-x-full md:translate-x-0 z-30">
-            <div class="p-4"><h2 class="text-2xl font-bold">Menu Navigasi</h2></div>
-            <nav>
-                <a href="#inventory" class="nav-link block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 bg-gray-900">Manajemen Stok</a>
-                <a href="#finance" class="nav-link block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Laporan Keuangan</a>
+        <aside id="sidebar" class="bg-gray-800 text-white w-64 fixed inset-y-0 left-0 transform -translate-x-full md:translate-x-0 z-30 shadow-lg flex flex-col">
+            <div class="p-4 border-b border-gray-700">
+                <h2 class="text-2xl font-bold text-white">Dasbor Sembako</h2>
+            </div>
+            
+            <!-- Menu Navigasi Utama -->
+            <nav class="p-2 flex-grow">
+                <a href="#inventory" class="nav-link flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 bg-gray-900">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+                    Manajemen Stok
+                </a>
+                <a href="#finance" class="nav-link flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    Laporan Keuangan
+                </a>
             </nav>
+
+            <!-- Bagian Ringkasan di Sidebar -->
+            <div class="p-4 border-t border-gray-700">
+                <h3 class="text-xs uppercase text-gray-400 font-bold mb-2">Ringkasan</h3>
+                <ul class="space-y-2 text-sm">
+                    <li class="sidebar-stat-item flex justify-between items-center p-2 rounded-md transition-colors">
+                        <span class="flex items-center text-gray-300">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                            Total Produk
+                        </span>
+                        <span id="sidebar-total-products" class="font-bold bg-gray-600 text-white rounded-full px-2 py-0.5">0</span>
+                    </li>
+                    <li class="sidebar-stat-item flex justify-between items-center p-2 rounded-md transition-colors">
+                        <span class="flex items-center text-yellow-300">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                            Stok Menipis
+                        </span>
+                        <span id="sidebar-low-stock" class="font-bold bg-yellow-500 text-white rounded-full px-2 py-0.5">0</span>
+                    </li>
+                    <li class="sidebar-stat-item flex justify-between items-center p-2 rounded-md transition-colors">
+                        <span class="flex items-center text-orange-400">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            Segera Kadaluarsa
+                        </span>
+                        <span id="sidebar-expiring-soon" class="font-bold bg-orange-500 text-white rounded-full px-2 py-0.5">0</span>
+                    </li>
+                    <li class="sidebar-stat-item flex justify-between items-center p-2 rounded-md transition-colors">
+                         <span class="flex items-center text-red-400">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+                            Sudah Kadaluarsa
+                        </span>
+                        <span id="sidebar-expired" class="font-bold bg-red-500 text-white rounded-full px-2 py-0.5">0</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Tombol Logout di Sidebar -->
+            <div class="p-2 border-t border-gray-700">
+                <button id="logout-btn" class="w-full flex items-center py-2.5 px-4 rounded transition duration-200 text-red-400 hover:bg-red-500 hover:text-white">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    Logout
+                </button>
+            </div>
         </aside>
 
-        <div class="md:ml-64">
+        <div class="md:ml-64 flex flex-col min-h-screen">
             <!-- Header -->
             <header class="bg-white shadow-sm sticky top-0 z-20">
-                <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                <div class="max-w-screen-2xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                     <div class="flex items-center">
-                        <button id="hamburger-btn" class="md:hidden mr-4 text-gray-500 hover:text-gray-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
-                        <h1 id="page-title" class="text-2xl font-bold text-gray-900">Manajemen Stok</h1>
+                        <button id="hamburger-btn" class="md:hidden mr-4 text-gray-500 hover:text-gray-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        </button>
+                        <h1 id="page-title" class="text-xl sm:text-2xl font-bold text-gray-900">Manajemen Stok</h1>
                     </div>
-                    <button id="logout-btn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg btn">
-                        <!-- Logout Icon -->
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/><path d="M9 5H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></svg>
-                        <span>Logout</span>
-                    </button>
                 </div>
             </header>
 
             <!-- Konten Utama -->
-            <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <main class="flex-grow max-w-screen-2xl mx-auto py-6 sm:px-6 lg:px-8 w-full">
                 <!-- Halaman Manajemen Stok -->
                 <div id="inventory-view" class="page-content">
                     <div class="bg-white p-6 rounded-xl shadow">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
                             <h2 class="text-xl font-bold text-gray-800">Daftar Stok Barang</h2>
                             <div class="flex items-center space-x-2">
-                                <button id="check-stock-notification-btn" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-3 rounded-lg text-sm btn">
-                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 16h-1v-4h-1"/><path d="M12 8v.01"/><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
-                                    <span>Cek Notifikasi</span>
-                                </button>
-                                <button id="export-inventory-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-lg text-sm btn">
-                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                    <span>Export CSV</span>
-                                </button>
-                                <button id="add-product-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg btn">
-                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                                    <span>Tambah Produk</span>
-                                </button>
+                                <button id="check-stock-notification-btn" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-3 rounded-lg text-sm">Cek Notifikasi</button>
+                                <button id="export-inventory-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-lg text-sm">Export CSV</button>
+                                <button id="add-product-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">+ Tambah Produk</button>
                             </div>
                         </div>
                         <div class="overflow-x-auto">
-                            <table class="min-w-full bg-white">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Produk</th>
-                                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Stok Grosir</th>
-                                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Stok Eceran</th>
-                                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Tgl. Kadaluarsa</th>
-                                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Aksi</th>
-                                    </tr>
-                                </thead>
+                            <table class="min-w-full bg-white"><thead class="bg-gray-50"><tr><th class="text-left py-3 px-4 uppercase font-semibold text-sm">Produk</th><th class="text-left py-3 px-4 uppercase font-semibold text-sm">Stok Grosir</th><th class="text-left py-3 px-4 uppercase font-semibold text-sm">Stok Eceran</th><th class="text-left py-3 px-4 uppercase font-semibold text-sm">Tgl. Kadaluarsa</th><th class="text-left py-3 px-4 uppercase font-semibold text-sm">Aksi</th></tr></thead>
                                 <tbody id="items-table-body" class="text-gray-700"></tbody>
                             </table>
                         </div>
                     </div>
                 </div>
 
-                <!-- Halaman Laporan Keuangan -->
+                <!-- Halaman Laporan Keuangan (LENGKAP) -->
                 <div id="finance-view" class="page-content hidden">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
                         <div class="bg-white p-6 rounded-xl shadow"><h3 class="text-gray-500 font-medium">Total Pendapatan</h3><p id="total-pendapatan" class="text-3xl font-bold text-green-500 mt-2">Rp 0</p></div>
@@ -99,57 +133,33 @@
             </main>
         </div>
     </div>
-
-    <!-- Overlay dan Modal -->
-    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden md:hidden"></div>
-    <div id="item-form-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-40">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg p-6 overflow-y-auto max-h-screen">
-             <div class="flex justify-between items-center mb-4">
-                <h2 id="modal-title" class="text-2xl font-bold">Edit Stok & Harga</h2>
-                <button class="close-btn text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
-            </div>
-            <form id="item-form">
-                <input type="hidden" id="item-id">
-                <input type="hidden" id="product-id">
-                <input type="hidden" id="product-source">
-                <div class="bg-gray-100 p-4 rounded-lg mb-4 flex items-center">
-                    <img id="modal-product-image" src="" class="w-16 h-16 rounded-lg object-cover mr-4">
-                    <div>
-                        <h3 id="modal-product-name" class="text-lg font-bold text-gray-800">Nama Produk</h3>
-                        <p class="text-sm text-gray-500">Atur detail stok, harga, dan kadaluarsa.</p>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <div><label for="item-stock-grosir" class="block text-gray-700 text-sm font-bold mb-2">Stok Grosir</label><div class="flex items-center"><input type="number" step="any" id="item-stock-grosir" class="input-field rounded-r-none" required><input type="text" id="item-unit-grosir" placeholder="e.g., pack" class="input-field rounded-l-none bg-gray-200 w-24"></div></div>
-                    <div><label for="item-stock-eceran" class="block text-gray-700 text-sm font-bold mb-2">Stok Eceran</label><div class="flex items-center"><input type="number" step="any" id="item-stock-eceran" class="input-field rounded-r-none" required><input type="text" id="item-unit-eceran" placeholder="e.g., buah" class="input-field rounded-l-none bg-gray-200 w-24"></div></div>
-                </div>
-                <div class="mb-4"><label for="item-isi-per-grosir" class="block text-gray-700 text-sm font-bold mb-2">Jumlah Eceran per Grosir</label><input type="number" id="item-isi-per-grosir" class="input-field" placeholder="Contoh: 1 pack berisi 10 buah" required></div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <div><label for="item-harga-grosir" class="block text-gray-700 text-sm font-bold mb-2">Harga Beli Grosir (Rp)</label><input type="number" id="item-harga-grosir" class="input-field" required></div>
-                    <div><label for="item-harga-eceran" class="block text-gray-700 text-sm font-bold mb-2">Harga Jual Eceran (Rp)</label><input type="number" id="item-harga-eceran" class="input-field" required></div>
-                </div>
-                <div class="mb-4">
-                    <label for="item-tanggal-kadaluarsa" class="block text-gray-700 text-sm font-bold mb-2">Tanggal Kadaluarsa</label>
-                    <input type="date" id="item-tanggal-kadaluarsa" class="input-field">
-                </div>
-                <div class="flex justify-end space-x-4 mt-6">
-                    <button type="button" class="cancel-btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg">Batal</button>
-                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg">Simpan Perubahan</button>
-                </div>
-            </form>
+    
+    <!-- Modal Notifikasi (LENGKAP) -->
+    <div id="notification-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg">
+            <div class="flex justify-between items-center p-6 border-b"><h2 class="text-2xl font-bold text-gray-800 flex items-center"><svg class="w-6 h-6 mr-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.159V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>Laporan Notifikasi Stok</h2><button id="notification-close-btn" class="text-gray-400 hover:text-gray-800 text-3xl leading-none">&times;</button></div>
+            <div class="p-6 max-h-[60vh] overflow-y-auto space-y-4"><div id="notification-content"></div></div>
+            <div class="flex justify-end p-6 bg-gray-50 border-t rounded-b-xl"><button id="notification-ok-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg">Tutup</button></div>
         </div>
     </div>
 
-    <div id="product-form-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-40">
+    <!-- Modal Form Edit Stok (LENGKAP) -->
+    <div id="item-form-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-40">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg p-6 overflow-y-auto max-h-screen">
+            <div class="flex justify-between items-center mb-4"><h2 id="modal-title" class="text-2xl font-bold">Edit Stok & Harga</h2><button class="close-btn text-gray-500 hover:text-gray-800 text-3xl">&times;</button></div>
+            <form id="item-form"><input type="hidden" id="item-id"><input type="hidden" id="product-id"><input type="hidden" id="product-source"><div class="bg-gray-100 p-4 rounded-lg mb-4 flex items-center"><img id="modal-product-image" src="" class="w-16 h-16 rounded-lg object-cover mr-4"><div><h3 id="modal-product-name" class="text-lg font-bold text-gray-800">Nama Produk</h3><p class="text-sm text-gray-500">Atur detail stok, harga, dan kadaluarsa.</p></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"><div><label for="item-stock-grosir" class="label-field">Stok Grosir</label><div class="flex items-center"><input type="number" step="any" id="item-stock-grosir" class="input-field rounded-r-none" required><input type="text" id="item-unit-grosir" placeholder="e.g., pack" class="input-field rounded-l-none bg-gray-200 w-24"></div></div><div><label for="item-stock-eceran" class="label-field">Stok Eceran</label><div class="flex items-center"><input type="number" step="any" id="item-stock-eceran" class="input-field rounded-r-none" required><input type="text" id="item-unit-eceran" placeholder="e.g., buah" class="input-field rounded-l-none bg-gray-200 w-24"></div></div></div><div class="mb-4"><label for="item-isi-per-grosir" class="label-field">Jumlah Eceran per Grosir</label><input type="number" id="item-isi-per-grosir" class="input-field" placeholder="Contoh: 1 pack berisi 10 buah" required></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"><div><label for="item-harga-grosir" class="label-field">Harga Beli Grosir (Rp)</label><input type="number" id="item-harga-grosir" class="input-field" required></div><div><label for="item-harga-eceran" class="label-field">Harga Jual Eceran (Rp)</label><input type="number" id="item-harga-eceran" class="input-field" required></div></div><div class="mb-4"><label for="item-tanggal-kadaluarsa" class="label-field">Tanggal Kadaluarsa</label><input type="date" id="item-tanggal-kadaluarsa" class="input-field"></div><div class="flex justify-end space-x-4 mt-6"><button type="button" class="cancel-btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg">Batal</button><button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg">Simpan Perubahan</button></div></form>
+        </div>
+    </div>
+
+    <!-- Modal Form Tambah Produk (LENGKAP) -->
+    <div id="product-form-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-40">
         <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg p-6">
             <div class="flex justify-between items-center mb-4"><h2 id="product-modal-title" class="text-2xl font-bold">Tambah Produk Baru</h2><button class="product-close-btn text-gray-500 hover:text-gray-800 text-3xl">&times;</button></div>
-            <form id="product-form">
-                <div class="mb-4"><label for="product-name" class="block text-gray-700 text-sm font-bold mb-2">Nama Produk</label><input type="text" id="product-name" class="input-field" required></div>
-                <div class="mb-6"><label class="block text-gray-700 text-sm font-bold mb-2">Gambar Produk</label><input type="file" id="product-image" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" accept="image/*" required></div>
-                <div class="flex justify-end space-x-4"><button type="button" class="product-cancel-btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg">Batal</button><button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg">Simpan Produk</button></div>
-            </form>
+            <form id="product-form"><div class="mb-4"><label for="product-name" class="label-field">Nama Produk</label><input type="text" id="product-name" class="input-field" required></div><div class="mb-6"><label class="label-field">Gambar Produk</label><input type="file" id="product-image" class="input-file" accept="image/*" required></div><div class="flex justify-end space-x-4"><button type="button" class="product-cancel-btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg">Batal</button><button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg">Simpan Produk</button></div></form>
         </div>
     </div>
+    
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden md:hidden"></div>
     
     <script type="module" src="js/auth.js"></script>
     <script type="module" src="js/admin.js"></script>
