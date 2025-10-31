@@ -6,42 +6,42 @@ export const localProductList = [
     {
         id: 'beras_regar5kg',
         name: 'Beras Regar 5kg',
-        image_url: 'https://dwwsqycyljpltanlsowp.supabase.co/storage/v1/object/public/products/beras.jpeg'
+        image_url: 'https://drive.google.com/file/d/1NXj3XNX08xs4aIqfdZ5JasVKbWuC0Gx9/view?usp=drivesdk'
     },
     {
         id: 'minyak_bimoli_2l',
         name: 'Minyak Goreng Bimoli 2L',
-        image_url: 'https://dwwsqycyljpltanlsowp.supabase.co/storage/v1/object/public/products/bimoli.jpeg'
+        image_url: 'https://drive.google.com/file/d/15aZDW5-DY4fN5yCiPkDkD2KMMOIty9Qv/view?usp=drivesdk'
     },
     {
         id: 'gula_pasir',
         name: 'Gula Pasir ',
-        image_url: 'https://dwwsqycyljpltanlsowp.supabase.co/storage/v1/object/public/products/gula.jpeg'
+        image_url: 'https://drive.google.com/file/d/1pF04cCPSncowPo4kxzGz4UiRL90QOFPs/view?usp=drivesdk'
     },
     {
         id: 'telur_papan',
         name: 'Telur Ayam 1 Papan (30 butir)',
-        image_url: 'https://dwwsqycyljpltanlsowp.supabase.co/storage/v1/object/public/products/telur.jpeg'
+        image_url: 'https://drive.google.com/file/d/1-m5ZVdb9QKXU0JTS17psI3sbyzxRXZvM/view?usp=drivesdk'
     },
     {
         id: 'mie_indomie_goreng',
         name: 'Indomie Goreng',
-        image_url: 'https://dwwsqycyljpltanlsowp.supabase.co/storage/v1/object/public/products/goreng.jpeg'
+        image_url: 'https://drive.google.com/file/d/1wA3a8AotgarpbB5R2BXqQWm8mD7NKf-4/view?usp=drivesdk'
     },
     {
         id: 'mie_indomie_soto',
         name: 'Indomie Soto',
-        image_url: 'https://dwwsqycyljpltanlsowp.supabase.co/storage/v1/object/public/products/soto.jpeg'
+        image_url: 'https://drive.google.com/file/d/1ZK0YdNE3Oue3PGzZSL9xzWIaULtUSBcR/view?usp=drivesdk'
     },
     {
         id: 'susu_kental_manis',
         name: 'Susu Kental Manis Sachet',
-        image_url: 'https://dwwsqycyljpltanlsowp.supabase.co/storage/v1/object/public/products/manis.jpeg'
+        image_url: 'https://drive.google.com/file/d/1IpADvrI42typy3LprNVX9LTjSmWY174B/view?usp=drivesdk'
     },
     {
         id: 'aqua_gelas',
         name: 'Aqua Gelas 190ml',
-        image_url: 'https://dwwsqycyljpltanlsowp.supabase.co/storage/v1/object/public/products/gelas.jpeg'
+        image_url: 'https://drive.google.com/file/d/17910IzSg24kRrxPj-OD81gQ2_uxnsiav/view?usp=drivesdk'
     },
     {
         id: 'kopi_kapal_api',
@@ -104,3 +104,4 @@ export const localProductList = [
         image_url: 'https://dwwsqycyljpltanlsowp.supabase.co/storage/v1/object/public/products/botol.jpeg'
     }
 ];
+
